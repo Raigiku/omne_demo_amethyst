@@ -29,8 +29,8 @@ Container(
                 normal_image: SolidColor(1., 1., 1., 1.),
                 hover_image: SolidColor(0.5, 0.5, 0.5, 1.),
                 press_image: SolidColor(0., 0., 0., 1.),
-                hover_sound: File("audio/effects/hover_option.wav", ("WAV", ())),
-                press_sound: File("audio/effects/press_play.wav", ("WAV", ())),
+                hover_sound: File("audio/effect/hover_option.wav", ("WAV", ())),
+                press_sound: File("audio/effect/press_play.wav", ("WAV", ())),
             )
         ),
     ],

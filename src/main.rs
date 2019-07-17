@@ -4,6 +4,8 @@ mod component;
 
 use state::MainMenuState;
 use component::position::Position;
+use crate::component::Object;
+use crate::component::object::AnimationId;
 
 use amethyst::{
     assets::{Processor, PrefabLoaderSystem},
@@ -20,28 +22,30 @@ use amethyst::{
     },
     ui::UiBundle,
     utils::application_root_dir,
-    window::WindowBundle
+    window::{WindowBundle, DisplayConfig}
 };
-use crate::component::Object;
-use crate::component::object::AnimationId;
 
 fn main() -> amethyst::Result<()> {
     amethyst::start_logger(Default::default());
 
     let app_root = application_root_dir()?;
-
     let resources_dir = app_root.join("resources");
-    let display_config_path = resources_dir.join("display_config.ron");
+    let icon_dir = resources_dir.join("image/omne_icon.png");
+
+    let mut display_config = DisplayConfig::default();
+    display_config.title = String::from("Omne");
+    display_config.dimensions = Some((1024, 768));
+    display_config.icon.replace(icon_dir);
 
     let render_graph = render::RenderGraph::default();
     let render_system = RenderingSystem::<DefaultBackend, _>::new(render_graph);
 
     let game_data = GameDataBuilder::default()
-        .with_bundle(WindowBundle::from_config_path(display_config_path))?
+        .with_bundle(WindowBundle::from_config(display_config))?
         .with(
             PrefabLoaderSystem::<Object>::default(),
             "scene_loader",
-&[]
+            &[]
         )
         .with_bundle(AnimationBundle::<AnimationId, SpriteRender>::new(
             "sprite_animation_control",
