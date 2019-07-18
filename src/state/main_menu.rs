@@ -36,7 +36,7 @@ impl SimpleState for MainMenuState {
                 let ui_transform_components = world.read_storage::<UiTransform>();
                 let selected_component = ui_transform_components.get(ui_event.target);
 
-                if pressed_play_button(world, selected_component.unwrap(), ui_event) {
+                if self.pressed_play_button(world, selected_component.unwrap(), ui_event) {
                     return Trans::Push(Box::new(GameplayState::new()));
                 }
                 Trans::None
@@ -46,11 +46,13 @@ impl SimpleState for MainMenuState {
     }
 }
 
-fn pressed_play_button(world: &World, selected_component: &UiTransform, ui_event: &UiEvent) -> bool {
-    if selected_component.id == "play_button" && ui_event.event_type == UiEventType::Click {
-        world.write_resource::<GameResource>().current_state = GameState::Gameplay;
-        return true;
-    } else {
-        return false;
+impl MainMenuState {
+    fn pressed_play_button(&self, world: &World, selected_component: &UiTransform, ui_event: &UiEvent) -> bool {
+        if selected_component.id == "play_button" && ui_event.event_type == UiEventType::Click {
+            world.write_resource::<GameResource>().current_state = GameState::Gameplay;
+            return true;
+        } else {
+            return false;
+        }
     }
 }

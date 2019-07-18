@@ -3,8 +3,8 @@ Prefab(
     entities: [
         // Player
         PrefabEntity(
-            data: Player (
-                data: Human(
+            data: Human(
+                data: CreaturePrefab(
                     sprite_scene: (
                         sheet: Sheet(
                             texture: File("image/human_m.png", (
@@ -41,11 +41,89 @@ Prefab(
                             sprite_number: 0,
                         ),
                         transform: (
-                            translation: (300.0, 200.0, 0.0),
+                            translation: (300, 200, 0),
                         )
-                    )
+                    ),
+                    movable: MovableComponent(
+                        speed: 5,
+                        direction_x: 0,
+                        direction_y: 0
+                    ),
+                    player: ()
                 )
             )
-        )
+        ),
+        // NPC
+        PrefabEntity(
+            data: Human(
+                data: CreaturePrefab(
+                    sprite_scene: (
+                        render: (
+                            sheet: "human_m",
+                            sprite_number: 0,
+                        ),
+                        transform: (
+                            translation: (300, 200, 0),
+                        )
+                    ),
+                    movable: MovableComponent(
+                        speed: 5,
+                        direction_x: 0,
+                        direction_y: 0
+                    ),
+                )
+            )
+        ),
+        // Enemy
+        PrefabEntity(
+            data: Cyclops(
+                data: CreaturePrefab(
+                    sprite_scene: (
+                        sheet: Sheet(
+                            texture: File("image/cyclops.png", (
+                                "IMAGE", (
+                                    sampler_info: (
+                                        min_filter: Nearest,
+                                        mag_filter: Nearest,
+                                        mip_filter: Nearest,
+                                        wrap_mode: (Tile, Tile, Tile),
+                                        lod_bias: (0),
+                                        lod_range: (
+                                            start: ( 0 ),
+                                            end: ( 8000 ),
+                                        ),
+                                        comparison: None,
+                                        border: (0),
+                                        anisotropic: Off,
+                                    ),
+                                ),
+                            )),
+                            sprites: [
+                                Grid((
+                                    texture_width: 32,
+                                    texture_height: 32,
+                                    columns: 1,
+                                    rows: 1,
+                                    cell_size: (32, 32),
+                                ))
+                            ],
+                            name: "cyclops",
+                        ),
+                        render: (
+                            sheet: "cyclops",
+                            sprite_number: 0,
+                        ),
+                        transform: (
+                            translation: (300, 250, 0),
+                        )
+                    ),
+                    movable: MovableComponent(
+                        speed: 3,
+                        direction_x: 0,
+                        direction_y: 0
+                    ),
+                )
+            )
+        ),
     ],
 )
