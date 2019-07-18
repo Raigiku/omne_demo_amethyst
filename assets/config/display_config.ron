@@ -1,0 +1,5 @@
+(
+    title: "Omne",
+    dimensions: Some((1280, 720)),
+    icon: Some("assets/image/omne_icon.png")
+)

@@ -18,7 +18,7 @@ use amethyst::{
 };
 
 // Window background color
-static CLEAR_COLOR: [f32; 4] = [0.34, 0.36, 0.52, 1.0];
+static CLEAR_COLOR: [f32; 4] = [0., 0., 0., 1.];
 
 #[derive(Default)]
 pub struct RenderGraph {

@@ -1,8 +1,0 @@
-#![enable(implicit_some)]
-Prefab(
-    entities: [
-        PrefabEntity(
-            data: Position(x: 1.0, y: 2.0, z: 3.0),
-        ),
-    ],
-)

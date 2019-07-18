@@ -2300,6 +2300,7 @@ name = "omne_demo_amethyst"
 version = "0.1.0"
 dependencies = [
  "amethyst 0.11.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "derive-new 0.5.7 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde 1.0.95 (registry+https://github.com/rust-lang/crates.io-index)",
  "specs-derive 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
