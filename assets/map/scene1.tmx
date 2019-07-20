@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="left-up" width="114" height="102" tilewidth="4" tileheight="8" infinite="0" nextlayerid="11" nextobjectid="1">
+ <tileset firstgid="1" name="tiles_8x8" tilewidth="8" tileheight="8" tilecount="30" columns="6">
+  <image source="../image/tile_sheet/tiles_8x8.png" width="48" height="40"/>
+ </tileset>
+ <tileset firstgid="31" source="tiles_4x8.tsx"/>
+ <layer id="9" name="Floor" width="114" height="102">
+  <data encoding="base64" compression="zlib">
+   eJzt1ssKwkAMBdAZWxV8L/z/b1UhA9kIFrXtwDkQbskqEDK0FAAAAFjebukB+Il9+j5HHt/kIfL076GYLO/xHrl51phyjP420g2vzxDZdnSJermmXs7bDHMxTdujG+tbu8P8vtYPshbWpN1jfivtsT/tH2ZIPXvsT/2iAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIB5PABLdAE3
+  </data>
+ </layer>
+ <layer id="10" name="Wall" width="114" height="102">
+  <data encoding="base64" compression="zlib">
+   eJzt1cEJwDAIBVC3KG16Kdl/x14yQBqIpOG9iydB+KgRAAAAsI7S6tFZr4yh+Kwm9TDXM9Ajxz3IcV29f/JOm4gRdmwPcvy3M9xKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICZXri5AmQ=
+  </data>
+ </layer>
+</map>

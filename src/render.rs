@@ -13,7 +13,7 @@ use amethyst::{
         types::DefaultBackend,
         GraphCreator, Kind,
     },
-    ui::{DrawUiDesc},
+    ui::DrawUiDesc,
     window::{ScreenDimensions, Window},
 };
 
@@ -26,6 +26,7 @@ pub struct RenderGraph {
     dirty: bool,
 }
 
+#[allow(clippy::map_clone)]
 impl GraphCreator<DefaultBackend> for RenderGraph {
     fn rebuild(&mut self, res: &Resources) -> bool {
         use std::ops::Deref;

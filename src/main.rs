@@ -1,29 +1,23 @@
-mod render;
-mod state;
 mod component;
-mod resource;
 mod prefab;
+mod render;
+mod resource;
+mod state;
 mod system;
 
-use state::MainMenuState;
-use prefab::Scene1Prefab;
-use system::{MovementSystem, PlayerSystem};
-
 use amethyst::{
-    assets::{Processor, PrefabLoaderSystem},
+    assets::{PrefabLoaderSystem, Processor},
     audio::Source,
     core::transform::TransformBundle,
-    input::{StringBindings, InputBundle},
+    input::{InputBundle, StringBindings},
     prelude::*,
     renderer::{
-        sprite_visibility::SpriteVisibilitySortingSystem,
-        sprite::{SpriteSheet},
-        types::DefaultBackend,
-        RenderingSystem,
+        sprite::SpriteSheet, sprite_visibility::SpriteVisibilitySortingSystem,
+        types::DefaultBackend, RenderingSystem,
     },
     ui::UiBundle,
     utils::application_root_dir,
-    window::WindowBundle
+    window::WindowBundle,
 };
 
 fn main() -> amethyst::Result<()> {
@@ -40,19 +34,23 @@ fn main() -> amethyst::Result<()> {
         .with_bundle(WindowBundle::from_config_path(display_config))?
         .with_bundle(TransformBundle::new())?
         .with_bundle(UiBundle::<DefaultBackend, StringBindings>::new())?
-        .with_bundle(InputBundle::<StringBindings>::new().with_bindings_from_file(
-                assets_dir.join("config/input_pc.ron")
-            )?
+        .with_bundle(
+            InputBundle::<StringBindings>::new()
+                .with_bindings_from_file(assets_dir.join("config/input_pc.ron"))?,
         )?
-        .with(PrefabLoaderSystem::<Scene1Prefab>::default(), "", &[])
+        .with(PrefabLoaderSystem::<prefab::Scene1>::default(), "", &[])
         .with(Processor::<SpriteSheet>::new(), "", &[])
         .with(Processor::<Source>::new(), "", &[])
-        .with(SpriteVisibilitySortingSystem::new(), "", &["transform_system"])
-        .with(MovementSystem, "movement_system", &[])
-        .with(PlayerSystem, "player_system", &["input_system"])
+        .with(
+            SpriteVisibilitySortingSystem::new(),
+            "",
+            &["transform_system"],
+        )
+        .with(system::Movement, "movement_system", &[])
+        .with(system::Player, "player_system", &["input_system"])
         .with_thread_local(render_system);
 
-    let mut game = Application::new(assets_dir, MainMenuState, game_data)?;
+    let mut game = Application::new(assets_dir, state::MainMenu, game_data)?;
     game.run();
 
     Ok(())

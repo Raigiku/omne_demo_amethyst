@@ -10,8 +10,8 @@ use specs_derive::Component;
 #[derive(Clone, Copy, Component, Debug, Default, Deserialize, Serialize, PrefabData)]
 #[prefab(Component)]
 #[serde(deny_unknown_fields)]
-pub struct MovableComponent {
+pub struct Movable {
     pub speed: f64,
     pub direction_x: f64,
-    pub direction_y: f64
+    pub direction_y: f64,
 }

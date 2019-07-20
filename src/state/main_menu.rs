@@ -2,27 +2,28 @@ use amethyst::{
     audio::output::init_output,
     input::{is_close_requested, is_key_down},
     prelude::*,
-    ui::{UiCreator, UiTransform, UiEventType, UiEvent},
+    ui::{UiCreator, UiEvent, UiEventType, UiTransform},
     winit::VirtualKeyCode,
 };
 
-use crate::state::GameplayState;
-use crate::resource::game::{GameResource, GameState};
+use crate::resource;
+use crate::state;
 
-pub struct MainMenuState;
+pub struct MainMenu;
 
-impl SimpleState for MainMenuState {
+impl SimpleState for MainMenu {
     fn on_start(&mut self, data: StateData<'_, GameData<'_, '_>>) {
         let StateData { world, .. } = data;
         init_output(&mut world.res);
-
-        world.add_resource::<GameResource>(GameResource::default());
-        world.exec(|mut creator: UiCreator<'_>| {
-            creator.create("ui/main_menu.ron", ())
-        });
+        world.add_resource::<resource::Game>(resource::Game::new());
+        world.exec(|mut creator: UiCreator<'_>| creator.create("ui/main_menu.ron", ()));
     }
 
-    fn handle_event(&mut self, data: StateData<'_, GameData<'_, '_>>, event: StateEvent) -> SimpleTrans {
+    fn handle_event(
+        &mut self,
+        data: StateData<'_, GameData<'_, '_>>,
+        event: StateEvent,
+    ) -> SimpleTrans {
         let StateData { world, .. } = data;
         match &event {
             StateEvent::Window(event) => {
@@ -37,19 +38,24 @@ impl SimpleState for MainMenuState {
                 let selected_component = ui_transform_components.get(ui_event.target);
 
                 if self.pressed_play_button(world, selected_component.unwrap(), ui_event) {
-                    return Trans::Push(Box::new(GameplayState::new()));
+                    return Trans::Push(Box::new(state::Gameplay::new()));
                 }
                 Trans::None
             }
-            _ => Trans::None
+            _ => Trans::None,
         }
     }
 }
 
-impl MainMenuState {
-    fn pressed_play_button(&self, world: &World, selected_component: &UiTransform, ui_event: &UiEvent) -> bool {
+impl MainMenu {
+    fn pressed_play_button(
+        &self,
+        world: &World,
+        selected_component: &UiTransform,
+        ui_event: &UiEvent,
+    ) -> bool {
         if selected_component.id == "play_button" && ui_event.event_type == UiEventType::Click {
-            world.write_resource::<GameResource>().current_state = GameState::Gameplay;
+            world.write_resource::<resource::Game>().current_state = resource::GameState::Gameplay;
             return true;
         } else {
             return false;

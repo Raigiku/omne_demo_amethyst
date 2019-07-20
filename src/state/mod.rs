@@ -1,5 +1,5 @@
-pub mod main_menu;
 pub mod gameplay;
+pub mod main_menu;
 
-pub use self::main_menu::MainMenuState;
-pub use self::gameplay::GameplayState;
+pub use self::gameplay::Gameplay;
+pub use self::main_menu::MainMenu;

@@ -4,7 +4,7 @@ Prefab(
         // Player
         PrefabEntity(
             data: Human(
-                data: CreaturePrefab(
+                data: Creature(
                     sprite_scene: (
                         sheet: Sheet(
                             texture: File("image/human_m.png", (
@@ -41,10 +41,10 @@ Prefab(
                             sprite_number: 0,
                         ),
                         transform: (
-                            translation: (300, 200, 0),
+                            translation: (300, 200, 1.1),
                         )
                     ),
-                    movable: MovableComponent(
+                    movable: Movable(
                         speed: 5,
                         direction_x: 0,
                         direction_y: 0
@@ -56,17 +56,17 @@ Prefab(
         // NPC
         PrefabEntity(
             data: Human(
-                data: CreaturePrefab(
+                data: Creature(
                     sprite_scene: (
                         render: (
                             sheet: "human_m",
                             sprite_number: 0,
                         ),
                         transform: (
-                            translation: (300, 200, 0),
+                            translation: (350, 200, 1),
                         )
                     ),
-                    movable: MovableComponent(
+                    movable: Movable(
                         speed: 5,
                         direction_x: 0,
                         direction_y: 0
@@ -74,10 +74,10 @@ Prefab(
                 )
             )
         ),
-        // Enemy
+        // Enemy Cyclops
         PrefabEntity(
             data: Cyclops(
-                data: CreaturePrefab(
+                data: Creature(
                     sprite_scene: (
                         sheet: Sheet(
                             texture: File("image/cyclops.png", (
@@ -114,16 +114,16 @@ Prefab(
                             sprite_number: 0,
                         ),
                         transform: (
-                            translation: (300, 250, 0),
+                            translation: (300, 250, 1),
                         )
                     ),
-                    movable: MovableComponent(
+                    movable: Movable(
                         speed: 3,
                         direction_x: 0,
                         direction_y: 0
                     ),
                 )
             )
-        ),
+        )
     ],
 )

@@ -1,16 +1,16 @@
 use amethyst::{
     core::{Float, Transform},
-    ecs::prelude::{Join, WriteStorage, ReadStorage, System}
+    ecs::prelude::{Join, ReadStorage, System, WriteStorage},
 };
 
-use crate::component::MovableComponent;
+use crate::component;
 
-pub struct MovementSystem;
+pub struct Movement;
 
-impl<'s> System<'s> for MovementSystem {
+impl<'s> System<'s> for Movement {
     type SystemData = (
         WriteStorage<'s, Transform>,
-        ReadStorage<'s, MovableComponent>
+        ReadStorage<'s, component::Movable>,
     );
 
     fn run(&mut self, (mut transforms, movables): Self::SystemData) {

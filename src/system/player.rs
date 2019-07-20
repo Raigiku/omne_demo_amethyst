@@ -1,17 +1,17 @@
 use amethyst::{
-    ecs::prelude::{Join, WriteStorage, ReadStorage, Read, System},
-    input::{InputHandler, StringBindings}
+    ecs::prelude::{Join, Read, ReadStorage, System, WriteStorage},
+    input::{InputHandler, StringBindings},
 };
 
-use crate::component::{MovableComponent, PlayerComponent};
+use crate::component;
 
-pub struct PlayerSystem;
+pub struct Player;
 
-impl<'s> System<'s> for PlayerSystem {
+impl<'s> System<'s> for Player {
     type SystemData = (
-        WriteStorage<'s, MovableComponent>,
-        ReadStorage<'s, PlayerComponent>,
-        Read<'s, InputHandler<StringBindings>>
+        WriteStorage<'s, component::Movable>,
+        ReadStorage<'s, component::Player>,
+        Read<'s, InputHandler<StringBindings>>,
     );
 
     fn run(&mut self, (mut movables, players, input): Self::SystemData) {

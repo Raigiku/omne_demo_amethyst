@@ -1,23 +1,13 @@
+use derive_new::new;
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum GameState {
     MainMenu,
-    Gameplay
+    Gameplay,
 }
 
-impl Default for GameState {
-    fn default() -> Self {
-        GameState::MainMenu
-    }
-}
-
-pub struct GameResource {
-    pub current_state: GameState
-}
-
-impl Default for GameResource {
-    fn default() -> Self {
-        GameResource {
-            current_state: GameState::default()
-        }
-    }
+#[derive(new)]
+pub struct Game {
+    #[new(value = "GameState::MainMenu")]
+    pub current_state: GameState,
 }

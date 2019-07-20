@@ -1,5 +1,5 @@
-pub mod player;
 pub mod movable;
+pub mod player;
 
-pub use self::player::PlayerComponent;
-pub use self::movable::MovableComponent;
+pub use self::movable::Movable;
+pub use self::player::Player;

@@ -7,11 +7,7 @@ use amethyst::{
 };
 use serde::{Deserialize, Serialize};
 
-use crate::component;
-
 #[derive(Debug, Clone, Serialize, Deserialize, PrefabData)]
-pub struct Creature {
+pub struct Tile {
     sprite_scene: SpriteScenePrefab,
-    movable: Option<component::Movable>,
-    player: Option<component::Player>,
 }

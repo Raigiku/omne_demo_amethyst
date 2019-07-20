@@ -10,4 +10,4 @@ use specs_derive::Component;
 #[derive(Clone, Copy, Component, Debug, Default, Deserialize, Serialize, PrefabData)]
 #[prefab(Component)]
 #[serde(deny_unknown_fields)]
-pub struct PlayerComponent;
+pub struct Player;
