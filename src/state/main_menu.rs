@@ -56,9 +56,9 @@ impl MainMenu {
     ) -> bool {
         if selected_component.id == "play_button" && ui_event.event_type == UiEventType::Click {
             world.write_resource::<resource::Game>().current_state = resource::GameState::Gameplay;
-            return true;
+            true
         } else {
-            return false;
+            false
         }
     }
 }
